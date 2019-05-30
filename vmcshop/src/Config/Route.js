@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory, hashHistory,HashRouter, BrowserRouter, Route, IndexRoute,Switch } from 'react-router-dom'
+import { browserHistory, hashHistory,HashRouter, BrowserRouter, Route,Switch } from 'react-router-dom'
 
 import Index from '../components/index/index.jsx'
 import Login from '../components/login/login.jsx'
@@ -35,7 +35,6 @@ const RouteConfig = (
                         <Route key={index} path={route.path} exact={route.exact} component={route.component} />
                     ))
                 }
-                <IndexRoute  component={Index} />
         </Switch>
     </Router>
 )

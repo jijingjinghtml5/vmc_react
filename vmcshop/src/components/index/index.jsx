@@ -1,8 +1,14 @@
-import React from 'React'
+import React,{Component} from 'React'
 
-class Index extends React.Component{
+class Index extends Component{
+    constructor(props) {
+        super(props);
+        this.state={
+
+        }
+    }
     render(){
-        <div>首页</div>
+       return <div>首页</div>
     }
 }
 export default Index;
