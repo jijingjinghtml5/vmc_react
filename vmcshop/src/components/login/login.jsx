@@ -1,4 +1,5 @@
-import React,{Component} from 'React'
+import React,{Component} from 'react'
+import { NavBar, Icon } from 'antd-mobile';
 
 class Login extends Component{
     constructor(props) {
@@ -8,7 +9,15 @@ class Login extends Component{
         }
     }
     render(){
-        return <div>登录</div>
+        return  <NavBar
+            mode="light"
+            icon={<Icon type="left" />}
+            onLeftClick={() => console.log('onLeftClick')}
+            rightContent={[
+                <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+                <Icon key="1" type="ellipsis" />,
+            ]}
+        >登录</NavBar>
     }
 }
 export default Login;

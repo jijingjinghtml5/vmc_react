@@ -1,4 +1,6 @@
-import React,{Component} from 'React'
+import React,{Component} from 'react'
+import { NavBar, Icon } from 'antd-mobile'
+import { Header } from "../../common/common"
 
 class Index extends Component{
     constructor(props) {
@@ -8,7 +10,7 @@ class Index extends Component{
         }
     }
     render(){
-       return <div>首页</div>
+        return <Header title={"首页"}></Header>
     }
 }
 export default Index;

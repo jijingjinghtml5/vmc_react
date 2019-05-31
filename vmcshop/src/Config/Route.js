@@ -1,31 +1,33 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { browserHistory, hashHistory,HashRouter, BrowserRouter, Route,Switch } from 'react-router-dom'
+import { Route,Switch,Router,Redirect } from 'react-router'
+import getComponent from '../common/getComponent'
+import createHashHistory from 'history/createHashHistory'
+import createBrowserHistory from 'history/createBrowserHistory'
 
-import Index from '../components/index/index.jsx'
-import Login from '../components/login/login.jsx'
+const hashHistory = createHashHistory();
+const browserHistory = createBrowserHistory();
 
 const routes = [
     {
         path:'/',
         exact: true,
-        component:Index
+        component:(props) => getComponent(props, () => import('../components/index/index'))
     },
     {
         path:'/pages/index/index',
         exact: false,
-        component:Index
+        component:(props) => getComponent(props, () => import('../components/index/index'))
     },
     {
         path:'/pages/login/login',
         exact: false,
-        component:Login
+        component:(props) => getComponent(props, () => import('../components/login/login'))
     }
 ]
 
-var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
+var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
 const supportsHistory = 'pushState' in window.history;
-let Router = process.env.NODE_ENV !== 'production' ? BrowserRouter : HashRouter;
+// let Router = process.env.NODE_ENV !== 'production' ? BrowserRouter : HashRouter;
 
 const RouteConfig = (
     <Router forceRefresh={!supportsHistory} history={history}>
@@ -35,6 +37,7 @@ const RouteConfig = (
                         <Route key={index} path={route.path} exact={route.exact} component={route.component} />
                     ))
                 }
+                <Redirect from='' to="/" />
         </Switch>
     </Router>
 )
