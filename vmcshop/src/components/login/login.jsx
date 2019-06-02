@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { NavBar, Icon } from 'antd-mobile';
+import { Header } from "../../common/common"
 
 class Login extends Component{
     constructor(props) {
@@ -9,15 +9,7 @@ class Login extends Component{
         }
     }
     render(){
-        return  <NavBar
-            mode="light"
-            icon={<Icon type="left" />}
-            onLeftClick={() => console.log('onLeftClick')}
-            rightContent={[
-                <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                <Icon key="1" type="ellipsis" />,
-            ]}
-        >登录</NavBar>
+        return <Header title={"登录"}></Header>
     }
 }
 export default Login;

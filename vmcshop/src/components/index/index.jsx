@@ -10,7 +10,7 @@ class Index extends Component{
         }
     }
     render(){
-        return <Header title={"首页"}></Header>
+        return <Header title={"首页"} isBack={false}></Header>
     }
 }
 export default Index;

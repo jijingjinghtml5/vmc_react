@@ -2,13 +2,34 @@ import React from 'react';
 import './App.css';
 import route from './Config/Route'; //路由配置
 import 'antd-mobile/dist/antd-mobile.css';
+import createHashHistory from 'history/createHashHistory'
+import createBrowserHistory from 'history/createBrowserHistory'
+import PropTypes from 'prop-types';
 
-function App() {
-  return (
-    <div className="App">
-        {route}
-    </div>
-  );
+const hashHistory = createHashHistory();
+const browserHistory = createBrowserHistory();
+
+var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
+class App extends React.Component {
+    getChildContext(){
+        console.log(history);
+        return {
+            history: history
+        }
+    }
+    render(){
+        return (
+            <div className="App">
+                {route}
+            </div>
+        );
+    }
+
 }
-
+App.childContextType = {
+    history:PropTypes.object
+}
 export default App;
+
+
+
