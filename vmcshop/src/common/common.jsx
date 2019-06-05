@@ -15,7 +15,6 @@ export class Header extends Component{
 
         }
         onLeftClick(){
-            // history.push('/pages/login/login')
             if(this.props.isBack===false) return;
             this.context.history.goBack();
         }
@@ -27,10 +26,6 @@ export class Header extends Component{
                 mode="light"
                 icon={this.props.isBack===false?false:<Icon type="left" />}
                 onLeftClick={this.onLeftClick}
-                rightContent={[
-                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <Icon key="1" type="ellipsis" />,
-                ]}
             >{this.props.title}</NavBar>
         }
 }

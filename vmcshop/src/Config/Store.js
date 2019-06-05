@@ -1,9 +1,8 @@
 import { createStore, combineReducers } from 'redux';//, combineReducers, applyMiddleware
-import reducer from '../pages/index/reducer'
-import loginReducer from '../pages/login/reducer'
+import reducer from '../store/index/reducer'
+
 var store = createStore(
-    combineReducers(reducer,loginReducer)
+    combineReducers(reducer)
 );
 
 export default store;
-

@@ -1,8 +1,11 @@
 // import merged from 'obj-merged';
-import * as config from './Config/Config';
+import * as config from '../Config/Config';
 import { Toast } from 'antd-mobile';
+import createHashHistory from 'history/createHashHistory'
 import createBrowserHistory from 'history/createBrowserHistory'
-const history = createBrowserHistory();
+const hashHistory = createHashHistory();
+const browserHistory = createBrowserHistory();
+var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
 const {target} = config;
 const Util = {};
 
