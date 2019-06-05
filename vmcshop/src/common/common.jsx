@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavBar, Icon } from 'antd-mobile'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 // import createHashHistory from 'history/createHashHistory'
 // import createBrowserHistory from 'history/createBrowserHistory'
 //
@@ -11,15 +11,16 @@ export class Header extends Component{
         constructor(props){
             super(props)
             this.onLeftClick = this.onLeftClick.bind(this);
-            this.setState({...props});
+
 
         }
         onLeftClick(){
             // history.push('/pages/login/login')
             if(this.props.isBack===false) return;
-            console.log(1111111);
-            console.log(this.context);
             this.context.history.goBack();
+        }
+        componentDidMount(){
+            this.setState({...this.props});
         }
         render(){
             return <NavBar

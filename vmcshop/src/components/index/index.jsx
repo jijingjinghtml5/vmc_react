@@ -1,16 +1,26 @@
 import React,{Component} from 'react'
 import { NavBar, Icon } from 'antd-mobile'
 import { Header } from "../../common/common"
+import PropTypes from 'prop-types';
 
-class Index extends Component{
+export default class Index extends Component{
     constructor(props) {
         super(props);
-        this.state={
-
-        }
+        this.goLogin = this.goLogin.bind(this)
+    }
+    goLogin(){
+        console.log(this.context.history);
+        this.context.history.push('/pages/login/login')
     }
     render(){
-        return <Header title={"首页"} isBack={false}></Header>
+        return (
+            <div>
+                <Header title={"首页"} isBack={false}></Header>
+                <div onClick={this.goLogin}>去登录页</div>
+            </div>
+        )
     }
 }
-export default Index;
+Index.contextTypes = {
+    history: PropTypes.object
+};

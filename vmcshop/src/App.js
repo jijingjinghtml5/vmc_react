@@ -11,8 +11,10 @@ const browserHistory = createBrowserHistory();
 
 var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
 class App extends React.Component {
+    static childContextTypes = {
+        history:PropTypes.object
+    }
     getChildContext(){
-        console.log(history);
         return {
             history: history
         }
@@ -26,10 +28,7 @@ class App extends React.Component {
     }
 
 }
-App.childContextType = {
-    history:PropTypes.object
-}
-export default App;
 
+export default App;
 
 
