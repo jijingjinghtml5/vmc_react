@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { NavBar, Icon } from 'antd-mobile'
-import { Header } from "../../common/common"
+import { Header,Footer } from "../../common/common"
 import PropTypes from 'prop-types';
 
 export default class Index extends Component{
@@ -17,6 +17,7 @@ export default class Index extends Component{
             <div>
                 <Header title={"首页"} isBack={false}></Header>
                 <div onClick={this.goLogin}>去登录页</div>
+                <Footer></Footer>
             </div>
         )
     }
