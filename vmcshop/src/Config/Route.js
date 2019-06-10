@@ -22,6 +22,21 @@ const routes = [
         path:'/pages/login/login',
         exact: false,
         component:(props) => getComponent(props, () => import('../components/login/login'))
+    },
+    {
+        path:'/pages/cat/index',
+        exact: false,
+        component:(props) => getComponent(props, () => import('../components/cat/index'))
+    },
+    {
+        path:'/pages/cart/index',
+        exact: false,
+        component:(props) => getComponent(props, () => import('../components/cart/index'))
+    },
+    {
+        path:'/pages/my/index',
+        exact: false,
+        component:(props) => getComponent(props, () => import('../components/my/index'))
     }
 ]
 

@@ -3,11 +3,11 @@ import { NavBar, Icon } from 'antd-mobile'
 import { Header,Footer } from "../../common/common"
 import PropTypes from 'prop-types';
 
-export default class Index extends Component{
+export default class Cat extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab:'index'
+            selectedTab:'cat'
         }
         this.goLogin = this.goLogin.bind(this)
     }
@@ -18,13 +18,13 @@ export default class Index extends Component{
     render(){
         return (
             <div>
-                {/*<Header title={"首页"} isBack={false}></Header>*/}
+                <Header title={"分类"} isBack={false}></Header>
                 <div onClick={this.goLogin}>去登录页</div>
-                <Footer selectedTab="index"></Footer>
+                <Footer selectedTab="cat"></Footer>
             </div>
         )
     }
 }
-Index.contextTypes = {
+Cat.contextTypes = {
     history: PropTypes.object
 };

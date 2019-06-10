@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavBar, Icon,TabBar } from 'antd-mobile'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { changeTab } from '../actions'
 // import createHashHistory from 'history/createHashHistory'
 // import createBrowserHistory from 'history/createBrowserHistory'
 //
@@ -52,8 +54,8 @@ export class Footer extends Component{
                     hidden={this.state.hidden}
                 >
                     <TabBar.Item
-                        title="Life"
-                        key="Life"
+                        title="首页"
+                        key="index"
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
@@ -66,13 +68,11 @@ export class Footer extends Component{
                             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
                         />
                         }
-                        selected={this.state.selectedTab === 'index'}
+                        selected={this.props.selectedTab === 'index'}
                         badge={1}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'index',
-                            });
-                            this.context.history.replace('/pages/login/login');
+                            if(this.props.selectedTab === 'index') return;
+                            this.context.history.replace('/pages/index/index');
                         }}
                         data-seed="logId"
                     >
@@ -93,15 +93,13 @@ export class Footer extends Component{
                                 background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
                             />
                         }
-                        title="Koubei"
-                        key="Koubei"
-                        badge={'new'}
-                        selected={this.state.selectedTab === 'cat'}
+                        title="分类"
+                        key="cat"
+                        //badge={'new'}
+                        selected={this.props.selectedTab === 'cat'}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'cat',
-                            });
-                            this.context.history.replace('/pages/login/login');
+                            if(this.props.selectedTab === 'cat') return;
+                            this.context.history.replace('/pages/cat/index');
                         }}
                         data-seed="logId1"
                     >
@@ -122,15 +120,13 @@ export class Footer extends Component{
                                 background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
                             />
                         }
-                        title="Friend"
-                        key="Friend"
+                        title="购物车"
+                        key="cart"
                         dot
-                        selected={this.state.selectedTab === 'cart'}
+                        selected={this.props.selectedTab === 'cart'}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'cart',
-                            });
-                            this.context.history.replace('/pages/login/login');
+                            if(this.props.selectedTab === 'cart') return;
+                            this.context.history.replace('/pages/cart/index');
                         }}
                     >
                         {/*{this.renderContent('Friend')}*/}
@@ -138,13 +134,12 @@ export class Footer extends Component{
                     <TabBar.Item
                         icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
                         selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-                        title="My"
+                        title="我的"
                         key="my"
-                        selected={this.state.selectedTab === 'my'}
+                        selected={this.props.selectedTab === 'my'}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'my',
-                            });
+                            if(this.props.selectedTab === 'my') return;
+                            this.context.history.replace('/pages/my/index');
                         }}
                     >
                         {/*{this.renderContent('My')}*/}
