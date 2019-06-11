@@ -2,9 +2,10 @@
   "name": "vmcshop",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://demo.vmcshop.com",
+  "proxy": "https://demo.vmcshop.com",
   "dependencies": {
     "antd-mobile": "^2.2.13",
+    "cross-fetch": "^3.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",

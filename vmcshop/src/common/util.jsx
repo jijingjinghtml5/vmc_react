@@ -3,6 +3,10 @@ import * as config from '../Config/Config';
 import { Toast } from 'antd-mobile';
 import createHashHistory from 'history/createHashHistory'
 import createBrowserHistory from 'history/createBrowserHistory'
+import fetch from 'cross-fetch';
+
+// Using CommonJS modules
+const fetch = require('cross-fetch');
 const hashHistory = createHashHistory();
 const browserHistory = createBrowserHistory();
 var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;

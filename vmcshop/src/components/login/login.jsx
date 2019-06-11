@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { List, InputItem, WhiteSpace,Button,Toast } from 'antd-mobile'
 import { Tool } from '../../common/util';
-import { Header } from "../../common/common"
+import Header from "../../common/Header";
 import PropTypes from 'prop-types';
 import Index from "../index";
 

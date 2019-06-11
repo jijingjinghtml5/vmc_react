@@ -1,6 +1,7 @@
-import React,{Component} from 'react'
-import { NavBar, Icon } from 'antd-mobile'
-import { Header,Footer } from "../../common/common"
+import React,{Component} from 'react';
+import { NavBar, Icon } from 'antd-mobile';
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
 import PropTypes from 'prop-types';
 
 export default class Cart extends Component{

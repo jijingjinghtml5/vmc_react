@@ -1,46 +1,20 @@
 import React, { Component } from 'react';
-import { NavBar, Icon,TabBar } from 'antd-mobile'
-import PropTypes from 'prop-types'
-// import createHashHistory from 'history/createHashHistory'
-// import createBrowserHistory from 'history/createBrowserHistory'
-//
-// const hashHistory = createHashHistory();
-// const browserHistory = createBrowserHistory();
-// var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
-export class Header extends Component{
-        constructor(props){
-            super(props)
-            this.onLeftClick = this.onLeftClick.bind(this);
+import { NavBar, Icon,TabBar } from 'antd-mobile';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { changeTab } from '../store/common_action';
+import store from '../Config/Store';
 
 
-        }
-        onLeftClick(){
-            if(this.props.isBack===false) return;
-            this.context.history.goBack();
-        }
-        componentDidMount(){
-            this.setState({...this.props});
-        }
-        render(){
-            return <NavBar
-                mode="light"
-                icon={this.props.isBack===false?false:<Icon type="left" />}
-                onLeftClick={this.onLeftClick}
-            >{this.props.title}</NavBar>
-        }
-}
-Header.contextTypes = {
-    history: PropTypes.object
-};
-
-
-export class Footer extends Component{
+class Footer extends Component{
     constructor(props){
         super(props)
         this.state = {
             fullScreen:true,
             hidden:false
         }
+        console.log(this.props);
+        Footer._this = this;
     }
     render(){
         return (
@@ -68,9 +42,12 @@ export class Footer extends Component{
                         }
                         selected={this.props.selectedTab === 'index'}
                         badge={1}
-                        onPress={() => {
-                            if(this.props.selectedTab === 'index') return;
-                            this.context.history.replace('/pages/index/index');
+                        onPress={(type='index') => {
+                            this.props.onClick(type);
+                            // if(this.props.selectedTab === 'index') return;
+                            // store.dispatch(changeTab('index'));
+                            // console.log(store.getState());
+                            // this.context.history.replace('/pages/index/index');
                         }}
                         data-seed="logId"
                     >
@@ -95,9 +72,12 @@ export class Footer extends Component{
                         key="cat"
                         //badge={'new'}
                         selected={this.props.selectedTab === 'cat'}
-                        onPress={() => {
-                            if(this.props.selectedTab === 'cat') return;
-                            this.context.history.replace('/pages/cat/index');
+                        onPress={(type='cat') => {
+                            this.props.onClick(type);
+                            // if(this.props.selectedTab === 'cat') return;
+                            // store.dispatch(changeTab('cat'));
+                            // console.log(store.getState());
+                            // this.context.history.replace('/pages/cat/index');
                         }}
                         data-seed="logId1"
                     >
@@ -122,9 +102,12 @@ export class Footer extends Component{
                         key="cart"
                         dot
                         selected={this.props.selectedTab === 'cart'}
-                        onPress={() => {
-                            if(this.props.selectedTab === 'cart') return;
-                            this.context.history.replace('/pages/cart/index');
+                        onPress={(type='cart') => {
+                            this.props.onClick(type);
+                            // if(this.props.selectedTab === 'cart') return;
+                            // // store.dispatch(changeTab('cart'));
+                            // console.log(store.getState());
+                            // this.context.history.replace('/pages/cart/index');
                         }}
                     >
                         {/*{this.renderContent('Friend')}*/}
@@ -135,9 +118,12 @@ export class Footer extends Component{
                         title="我的"
                         key="my"
                         selected={this.props.selectedTab === 'my'}
-                        onPress={() => {
-                            if(this.props.selectedTab === 'my') return;
-                            this.context.history.replace('/pages/my/index');
+                        onPress={(type='my') => {
+                            this.props.onClick(type);
+                            // if(this.props.selectedTab === 'my') return;
+                            //store.dispatch(changeTab('my'));
+                            // console.log(store.getState());
+                            // this.context.history.replace('/pages/my/index');
                         }}
                     >
                         {/*{this.renderContent('My')}*/}
@@ -150,3 +136,18 @@ export class Footer extends Component{
 Footer.contextTypes = {
     history: PropTypes.object
 };
+
+const mapStateToProps = state => ({
+  current: state.currentTab
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (type) => {
+    if(Footer._this.props.selectedTab === type) return;
+    dispatch(changeTab(type))
+    console.log(store.getState());
+    Footer._this.context.history.replace(`/pages/${type}/index`);
+  }
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Footer); //连接redux

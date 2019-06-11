@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';//, combineReducers, applyMiddleware
-import { change_tab } from '../reducers/'
+import currentTab from '../store/common_reducer'
 
 var store = createStore(
-    combineReducers(change_tab)
+    combineReducers(currentTab)
 );
 
 export default store;
