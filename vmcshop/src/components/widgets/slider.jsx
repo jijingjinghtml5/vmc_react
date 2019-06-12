@@ -20,8 +20,6 @@ export class Slider extends Component{
                     autoplay={true}
                     infinite
                     slideWidth={1}
-                    beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                    afterChange={index => console.log('slide to', index)}
                 >
                 {this.props.items?(
                     this.props.items.map((item,index) => (

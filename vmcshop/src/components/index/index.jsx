@@ -5,6 +5,8 @@ import Header from "../../common/Header";
 import Footer from "../../common/Footer";
 import { Search } from "../widgets/searchbar";
 import { Slider } from "../widgets/slider";
+import { BlankHelper } from "../widgets/blankhelper";
+import { ImgNav } from "../widgets/imgnav";
 import PropTypes from 'prop-types';
 
 export default class Index extends Component{
@@ -13,11 +15,6 @@ export default class Index extends Component{
         this.state = {
             selectedTab:'index'
         }
-        this.goLogin = this.goLogin.bind(this)
-    }
-    goLogin(){
-        console.log(this.context.history);
-        this.context.history.push('/pages/login/login')
     }
     async componentDidMount(){
         let res = await Tool.post('/m/xcxpage.html',{});
@@ -39,13 +36,18 @@ export default class Index extends Component{
                                  case 'slider':
                                     return <Slider key={index} {...obj.data}></Slider>
                                     break;
+                                case 'blankhelper':
+                                    return <BlankHelper key={index} {...obj.data}></BlankHelper>
+                                    break;
+                                case 'imgnav':
+                                    return <ImgNav key={index} {...obj.data}></ImgNav>
+                                    break;
                                  default:
                                     return <div key={index}></div>
                             } 
                         })
                     ):''
                 }
-                <div onClick={this.goLogin}>去登录页</div>
                 <Footer selectedTab="index"></Footer>
             </div>
         )
