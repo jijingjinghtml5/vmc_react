@@ -5,8 +5,6 @@ import createHashHistory from 'history/createHashHistory'
 import createBrowserHistory from 'history/createBrowserHistory'
 import fetch from 'cross-fetch';
 
-// Using CommonJS modules
-const fetch = require('cross-fetch');
 const hashHistory = createHashHistory();
 const browserHistory = createBrowserHistory();
 var history = process.env.NODE_ENV !== 'production' ?  hashHistory : browserHistory;
@@ -174,13 +172,13 @@ async function commonFetcdh(url, options, method = 'GET',toast) {
     var session_id = Util.localItem('_SID'),
         vmc_uid = Util.localItem('_VMC_UID');
     console.log(session_id);
-    var headers = new Headers({
+    var headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
         'X-Requested-isWXAPP':'YES',
         'X-WxappStorage-SID':session_id?session_id:'',
         'X-WxappStorage-VMC-UID':vmc_uid?vmc_uid:''
-    })
+    }
     if (method === 'GET') { // 如果是GET请求，拼接url
         url += '?' + searchStr
         initObj = {
@@ -198,6 +196,7 @@ async function commonFetcdh(url, options, method = 'GET',toast) {
     if(toast!='hidden'){
         Toast.info('加载中',0,function(){},true);
     }
+    console.log(initObj);
     return new Promise((resolve, reject) => {
         fetch(url, initObj).then((res) => {
             if(res.headers.get('x-wxappstorage')){
