@@ -7,7 +7,9 @@ import { Search } from "../widgets/searchbar";
 import { Slider } from "../widgets/slider";
 import { BlankHelper } from "../widgets/blankhelper";
 import { ImgNav } from "../widgets/imgnav";
+import { GoodsList } from "../widgets/goodslist";
 import PropTypes from 'prop-types';
+import "../widgets/widgets.less";
 
 export default class Index extends Component{
     constructor(props) {
@@ -41,6 +43,9 @@ export default class Index extends Component{
                                     break;
                                 case 'imgnav':
                                     return <ImgNav key={index} {...obj.data}></ImgNav>
+                                    break;
+                                case 'goodslist':
+                                    return <GoodsList key={index} {...obj.data}></GoodsList>
                                     break;
                                  default:
                                     return <div key={index}></div>
