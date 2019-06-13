@@ -4,6 +4,9 @@ import { Tool } from '../../common/util';
 export class GoodsList extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            goodslist:[]
+        }
         GoodsList._this = this;
     }
     componentDidMount(){
@@ -16,15 +19,23 @@ export class GoodsList extends Component{
             filterArray.push('filter[' + GoodsList._this.props.filter_type + '][]=' + GoodsList._this.props.filter[GoodsList._this.props.filter_type][i]);
         }
     	let res =await Tool.post('/openapi/goods/gallery' + api_data + '&' + filterArray.join('&'),{});
-    	this.setState({
+    	console.log(res.data);
+        this.setState({
     		goodslist:res.data.goods_list
     	})
+        console.log(this.state.goodslist);
     }
     render(){
         return (
-            <div className={'widget-goodslist'}>
-
-            </div>
+            <ul className={'widget-goodslist'}>
+                {
+                    this.state.goodslist?(
+                        this.state.goodslist.map(val=>(
+                            <li>{val.name}</li>
+                        ))
+                    ):''
+                }
+            </ul>
         )
     }
 }
