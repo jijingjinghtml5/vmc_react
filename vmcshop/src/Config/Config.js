@@ -1,1 +1,0 @@
-export const target = process.env.NODE_ENV !== 'production' ? 'https://demo.vmcshop.com' : 'https://demo.vmcshop.com'; //目标网站
