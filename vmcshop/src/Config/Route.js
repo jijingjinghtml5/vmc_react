@@ -37,6 +37,11 @@ const routes = [
         path:'/pages/my/index',
         exact: false,
         component:(props) => getComponent(props, () => import('../components/my/index'))
+    },
+    {
+        path:'/pages/product/product',
+        exact: false,
+        component:(props) => getComponent(props, () => import('../components/product/product'))
     }
 ]
 

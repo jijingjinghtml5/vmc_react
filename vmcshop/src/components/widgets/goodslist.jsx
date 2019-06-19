@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { Tool } from '../../common/util';
+import PropTypes from 'prop-types';
 
 export class GoodsList extends Component{
     constructor(props) {
@@ -23,7 +24,10 @@ export class GoodsList extends Component{
         this.setState({
     		goodslist:res.data.goods_list
     	})
-        console.log(this.state.goodslist);
+    }
+    evt_link=(id)=>{
+        let url = `/pages/product/product?product_id=${id}`;
+        this.context.history.push(url);
     }
     render(){
         return (
@@ -31,7 +35,10 @@ export class GoodsList extends Component{
                 {
                     this.state.goodslist?(
                         this.state.goodslist.map(val=>(
-                            <li>{val.name}</li>
+                            <li key={val.product.product_id} className="goodslist-item" onClick={this.evt_link.bind(this,val.product.product_id)}>
+                                <img src={val.image}/>
+                                <span>{val.name}</span>
+                            </li>
                         ))
                     ):''
                 }
@@ -39,3 +46,6 @@ export class GoodsList extends Component{
         )
     }
 }
+GoodsList.contextTypes = {
+    history: PropTypes.object
+};
