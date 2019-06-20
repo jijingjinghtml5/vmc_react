@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import {Tool, Util} from './util';
+import PropTypes from 'prop-types';
 
-class AddCart extends Component{
+export class AddCart extends Component{
 	constructor(props){
         super(props);
         this.state = {
             images:{}
         }
     }
-    componentDidMount(){
+    componentDidMount=()=>{
 
     }
+
     loadImage=(image_id)=>{
         console.log(image_id);
         Util.loadImage(this,image_id,'m');
@@ -18,11 +20,15 @@ class AddCart extends Component{
     changeProduct=(pid)=>{
     	this.props.callback(pid);
     }
-    evt_addcart=(pid,type)=>{
-		let res = await Tool.post('/m/cart-' +type + '-' + pid + '-' + 1 + '.html',{});
-     	console.log(res);   
+    evt_addcart = async (pid,type)=>{
+		let res = await Tool.post('/m/cart-' +type + '-' + pid + '-1.html',{});
+     	if(type=='fastbuy'){
+			this.context.history.replace('/pages/checkout/checkout');
+     	}else if(type=='add'){
+     		this.context.history.replace('/pages/cart/index');
+     	}
     }
-    render(){
+    render=()=>{
     	let images = this.state.images?this.state.images:{};
     	let detail = this.props.detail;
     	if(!detail) return null;
@@ -66,5 +72,7 @@ class AddCart extends Component{
     	)
     }
 }
-export default AddCart;
 
+AddCart.contextTypes = {
+    history: PropTypes.object
+};

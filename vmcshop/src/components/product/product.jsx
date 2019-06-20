@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { NavBar, Icon , Carousel } from 'antd-mobile';
 import Header from "../../common/Header";
-import AddCart from "../../common/addCart";
+import { AddCart } from "../../common/addCart";
 import PropTypes from 'prop-types';
 import {Tool, Util} from '../../common/util';
 import "./product.less"
