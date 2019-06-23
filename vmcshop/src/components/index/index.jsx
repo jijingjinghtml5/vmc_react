@@ -10,7 +10,7 @@ import { ImgNav } from "../widgets/imgnav";
 import { GoodsList } from "../widgets/goodslist";
 import PropTypes from 'prop-types';
 import "../widgets/widgets.less";
-
+import "./index.less";
 export default class Index extends Component{
     constructor(props) {
         super(props);

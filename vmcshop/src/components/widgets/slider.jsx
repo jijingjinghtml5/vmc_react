@@ -1,8 +1,5 @@
-
-
 import React,{Component} from 'react';
 import { Carousel } from 'antd-mobile';
-import { Link } from 'react-router'
 
 export class Slider extends Component{
     constructor(props) {

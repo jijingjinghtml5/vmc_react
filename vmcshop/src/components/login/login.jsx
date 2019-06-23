@@ -3,7 +3,6 @@ import { List, InputItem, WhiteSpace,Button,Toast } from 'antd-mobile'
 import { Tool } from '../../common/util';
 import Header from "../../common/Header";
 import PropTypes from 'prop-types';
-import Index from "../index";
 
 class Login extends Component{
     constructor(props) {
