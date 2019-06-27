@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
-import { NavBar, Icon , Carousel } from 'antd-mobile';
+import {  Carousel } from 'antd-mobile';
 import Header from "../../common/Header";
 import { AddCart } from "../../common/addCart";
 import PropTypes from 'prop-types';
 import {Tool, Util} from '../../common/util';
-import "./product.less"
+import emitter from '../../common/events';
+import "./product.less";
 
 export default class Product extends Component{
     constructor(props) {
@@ -16,7 +17,11 @@ export default class Product extends Component{
         Product._this = this;
     }
     componentDidMount(){
-        console.log(this.props);
+        emitter.addListener('hidemask', (isShow) => {
+            this.setState({
+                isShow
+            });
+        });
         let search = this.props.location.search ;
         search = search.slice(1,);
         let arr = search.split('&');
@@ -29,7 +34,14 @@ export default class Product extends Component{
                 Product._this.getData(single[1])
             }
         });
-        
+
+    }
+    componentWillUnmount() {
+        emitter.removeListener('hidemask', (isShow) => {
+            this.setState({
+                isShow
+            });
+        });
     }
     getData=async (id)=>{
         let res = await Tool.post(`/m/item-${id}.html`,{});
@@ -68,7 +80,7 @@ export default class Product extends Component{
                                 style={{ display: 'inline-block', width: '100%',height:'7.5rem' }}
                             >
                                 <img
-                                    src={images[item.image_id]?images[item.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='} 
+                                    src={images[item.image_id]?images[item.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='}
                                     onLoad={this.loadImage.bind(this,item.image_id)}
                                     style={{ width: '100%', verticalAlign: 'middle' }}
                                 />
@@ -94,7 +106,7 @@ export default class Product extends Component{
                 </footer>
                 {
                     this.state.isShow?(
-                        <AddCart callback={this.changeProduct} detail={data_detail}></AddCart>
+                        <AddCart callback={this.changeProduct} detail={data_detail} ></AddCart>
                     ):''
                 }
             </div>

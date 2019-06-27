@@ -22,11 +22,16 @@ export default class Header extends Component{
             this.setState({...this.props});
         }
         render(){
-            return <NavBar
-                mode="light"
-                icon={this.props.isBack===false?false:<Icon type="left" />}
-                onLeftClick={this.onLeftClick}
-            >{this.props.title}</NavBar>
+            return (
+                <div className={'App-header'}>
+                    <NavBar
+                        mode="light"
+                        icon={this.props.isBack===false?false:<Icon type="left" />}
+                        onLeftClick={this.onLeftClick}
+                    >{this.props.title}</NavBar>
+                    <div className={'rare-header'}></div>
+                </div>
+            )
         }
 }
 Header.contextTypes = {

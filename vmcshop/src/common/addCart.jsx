@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Tool, Util} from './util';
 import PropTypes from 'prop-types';
+import emitter from './events';
 
 export class AddCart extends Component{
 	constructor(props){
@@ -12,7 +13,10 @@ export class AddCart extends Component{
     componentDidMount=()=>{
 
     }
-
+    handleClick=()=>{
+	    console.log(11111);
+        emitter.emit('hidemask', false);
+    }
     loadImage=(image_id)=>{
         console.log(image_id);
         Util.loadImage(this,image_id,'m');
@@ -34,13 +38,13 @@ export class AddCart extends Component{
     	if(!detail) return null;
     	return (
     		<div>
-				<div className={'position-mask'}></div>
+				<div className={'position-mask'} onClick={this.handleClick.bind(this)}></div>
 				{
 					detail.product?(
 						<div className={'addcart-component'}>
 							<img
                                 className={'addcart-img'}
-                                src={images[detail.product.image_id]?images[detail.product.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='} 
+                                src={images[detail.product.image_id]?images[detail.product.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='}
                                 onLoad={this.loadImage.bind(this,detail.product.image_id)}
                                 style={{  verticalAlign: 'middle' }}
                             />
@@ -49,11 +53,11 @@ export class AddCart extends Component{
 							</label>
 							{
 								detail.spec_desc.t.map((val,index)=>(
-									<div className={'addcart-spec'}>
+									<div className={'addcart-spec'} key={val}>
 										<label>{val}：</label>
 										{
 											detail.spec_desc.v[index].map((val)=>(
-												<span onClick={this.changeProduct.bind(this,val.product_id)} className={val.product_id==detail.product.product_id?'active':''}>{val.label}</span>
+												<span onClick={this.changeProduct.bind(this,val.product_id)} className={val.product_id==detail.product.product_id?'active':''} key={val.product_id}>{val.label}</span>
 											))
 										}
 									</div>
@@ -64,10 +68,10 @@ export class AddCart extends Component{
 								<button onClick={this.evt_addcart.bind(this,detail.product.product_id,'add')}>加入购物车</button>
 							</div>
 						</div>
-						
+
 					):''
 				}
-				
+
     		</div>
     	)
     }

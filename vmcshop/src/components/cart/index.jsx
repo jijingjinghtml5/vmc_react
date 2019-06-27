@@ -87,9 +87,9 @@ export default class Cart extends Component{
                                         val.objects.goods.map((obj,idx)=>(
                                             <div key={obj.obj_ident} className={Cart._this.state.touchId==obj.obj_ident?'select_li merchant-item':'merchant-item'} onTouchStart={this.drawStart.bind(this,obj.obj_ident)} onTouchMove={this.drawMove.bind(this,obj.obj_ident)} onTouchEnd={this.drawEnd}>
                                                 <label></label>
-                                                <img className={'goods-img'} src={images[obj.item.product.image_id]?images[obj.item.product.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='} 
+                                                <img className={'goods-img'} src={images[obj.item.product.image_id]?images[obj.item.product.image_id]:'data:image/gif;base64,R0lGODlhAQABAIAAAO/v7////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw=='}
                                 onLoad={this.loadImage.bind(this,obj.item.product.image_id)} />
-                                                <div>{obj.item.product.name}</div>
+                                                <div className={'goods-name'}>{obj.item.product.name}</div>
                                                 <div onClick={this.evt_delete.bind(this,obj.obj_ident)} className={Cart._this.state.touchId==obj.obj_ident?'goods-delete':'goods-delete'}>删除</div>
                                             </div>
                                         ))
@@ -97,7 +97,7 @@ export default class Cart extends Component{
                                 </li>
                             ))
                         ):''
-                        
+
                     }
                 </ul>
                 <Footer selectedTab="cart"></Footer>

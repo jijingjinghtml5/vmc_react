@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import { NavBar, Icon } from 'antd-mobile';
 import { Tool } from '../../common/util';
 import Header from "../../common/Header";
 import Footer from "../../common/Footer";
@@ -28,7 +27,7 @@ export default class Index extends Component{
             <div>
                 {/*可视化页面*/}
                 { this.state.is_homepage==='false' ?  <Header title={this.state.title} isBack={this.state.is_homepage==='false'}></Header>: '' }
-                { 
+                {
                     this.state.widgets?(
                         this.state.widgets.map((obj,index)=>{
                             switch(obj.name) {
@@ -49,7 +48,7 @@ export default class Index extends Component{
                                     break;
                                  default:
                                     return <div key={index}></div>
-                            } 
+                            }
                         })
                     ):''
                 }
