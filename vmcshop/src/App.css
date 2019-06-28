@@ -16,6 +16,7 @@ body, h1, h2, h3, p, div, ol, ul, input, button {
 
 .App-header {
 
+
 }
 .App-header .am-navbar{
     position:fixed;
@@ -24,10 +25,11 @@ body, h1, h2, h3, p, div, ol, ul, input, button {
     right:0;
     z-index:99;
 }
+
 .rare-header{
     height:50px;
+    width:100%;
 }
-
 .App-link {
     color: #61dafb;
 }
@@ -44,6 +46,18 @@ ul,li{
     transform: rotate(360deg);
   }
 }
+
+/*头部样式*/
+.am-navbar{
+    border-bottom:1px solid #efefef;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:999;
+}
+
+/*文本样式*/
 .react-parse{
     width:100%;
 }

@@ -23,13 +23,13 @@ export default class Header extends Component{
         }
         render(){
             return (
-                <div className={'App-header'}>
+                <div className={"app-header"}>
                     <NavBar
                         mode="light"
                         icon={this.props.isBack===false?false:<Icon type="left" />}
                         onLeftClick={this.onLeftClick}
                     >{this.props.title}</NavBar>
-                    <div className={'rare-header'}></div>
+                    <div className={"rare-header"}></div>
                 </div>
             )
         }

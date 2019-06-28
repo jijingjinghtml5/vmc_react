@@ -55,6 +55,7 @@ export default class Product extends Component{
         this.context.history.replace(type=='index'?'/pages/index/index':'/pages/cart/index')
     }
     changeProduct=(pid)=>{
+        if(pid == this.state.data_detail.product.product_id) return;
         this.getData(pid);
     }
     showPopup=(isShow)=>{
