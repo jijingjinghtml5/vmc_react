@@ -42,6 +42,11 @@ const routes = [
         path:'/pages/product/product',
         exact: false,
         component:(props) => getComponent(props, () => import('../components/product/product'))
+    },
+    {
+        path:'/pages/visible/index',
+        exact: false,
+        component:(props) => getComponent(props, () => import('../components/visible/index'))
     }
 ]
 

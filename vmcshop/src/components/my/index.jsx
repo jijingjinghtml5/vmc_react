@@ -11,16 +11,55 @@ export default class My extends Component{
         this.state = {
             selectedTab:'my'
         }
-        this.goLogin = this.goLogin.bind(this)
+        this.goLogin = this.goLogin.bind(this);
+        My._this = this;
     }
     goLogin(){
         console.log(this.context.history);
         this.context.history.push('/pages/login/login')
     }
-    async componentDidMount(){
-        let res = await Tool.post('/m/my.html',{});
-        this.setState({...res});
-        console.log(this.state.member);
+    // async componentDidMount(){
+    //     let res = await Tool.post('/m/my.html',{});
+    //     this.setState({...res});
+    //     console.log(this.state.member);
+    // }
+    componentDidMount(){
+        class Math {
+            @log
+            add(a, b) {
+                return a + b;
+            }
+        }
+
+        function log(target, name, descriptor) {
+            var oldValue = descriptor.value;
+
+            descriptor.value = function() {
+                console.log(`Calling ${name} with`, arguments);
+                return oldValue.apply(this, arguments);
+            };
+
+            return descriptor;
+        }
+
+        const math = new Math();
+        math.add(2, 4);
+
+
+        let gen = this.getData();
+        function run(test){
+            if(test.done) return null;
+            test.value.then((val)=>{
+                My._this.setState({
+                    ...val
+                })
+                run(gen.next())
+            })
+        }
+        run(gen.next())
+    }
+    * getData(){
+        let res = yield Tool.post('/m/my.html',{});
     }
     loadImage(image_id){
         console.log(image_id);
